@@ -29,19 +29,18 @@ export const fetchSearchUser = createAsyncThunk(
 );
 
 export const fetchReposByUser = createAsyncThunk(
-  "github/fetchReposByUser",
+  "user/repos",
   async (username: string, thunkApi) => {
     try {
-      const response = await githubApi.get(`/users/${username}/repos`, {
-        params: { per_page: 5, sort: "updated" },
-      });
-
+      const response = await githubApi.get(`/users/${username}/repos`);
       return {
         username,
         repos: response.data,
       };
     } catch (error: any) {
-      return thunkApi.rejectWithValue(error.response.data);
+      return thunkApi.rejectWithValue(
+        error.response?.data?.message || "Failed to fetch repos"
+      );
     }
   }
 );

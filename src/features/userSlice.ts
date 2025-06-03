@@ -5,7 +5,7 @@ import { User } from "../models/userModel";
 
 interface UserState {
   users: User[];
-  reposByUsername: Record<string, Repos[]>;
+  reposByUsername: { [username: string]: Repos[] };
   loading: boolean;
   error: string | null;
 }
@@ -26,6 +26,8 @@ const userSlice = createSlice({
       .addCase(fetchSearchUser.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.users = [];
+        state.reposByUsername = {};
       })
       .addCase(fetchSearchUser.fulfilled, (state, action) => {
         state.users = action.payload.users;
@@ -33,20 +35,11 @@ const userSlice = createSlice({
       })
       .addCase(fetchSearchUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload as string | null;
-      })
-      .addCase(fetchReposByUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.error = action.payload as string;
       })
       .addCase(fetchReposByUser.fulfilled, (state, action) => {
         const { username, repos } = action.payload;
         state.reposByUsername[username] = repos;
-        state.loading = false;
-      })
-      .addCase(fetchReposByUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string | null;
       });
   },
 });
