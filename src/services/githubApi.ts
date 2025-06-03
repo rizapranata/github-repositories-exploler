@@ -1,4 +1,3 @@
-// src/services/tmdbApi.ts
 import axios from "axios";
 import { configEnv } from "../config";
 
@@ -13,10 +12,10 @@ githubApi.interceptors.request.use(
   async (config) => {
     // const token = localStorage.getItem("token"); // React Web
     const token = `${configEnv.access_token}`;
+    
     if (token) {
-      config.headers.Authorization = `${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
     }
-    console.info("config:", config);
     return config;
   },
   (error) => Promise.reject(error)
