@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { fetchReposByUser, fetchSearchUser } from "../../services/fetchApi";
 import Expand from "../../components/Expand";
 import CircularProgress from "../../components/CircullarProgress";
+import EmptyState from "../../components/EmptyState";
 import { User } from "../../models/userModel";
 
 const Home = () => {
@@ -68,26 +69,41 @@ const Home = () => {
         </button>
       </form>
 
-      <p className="text-gray-400 py-3">Showing users for "{queryUser}"</p>
+      {queryUser && (
+        <p className="text-gray-400 py-3">Showing users for "{queryUser}"</p>
+      )}
 
       {error && <p className="text-red-500">{error}</p>}
 
-      <div>
-        {users.map((user) => (
-          <Expand key={user.login} title={user.login}>
-            {(reposByUsername[user.login] || []).map((repo) => (
-              <div
-                key={repo.id}
-                className="border p-2 rounded mb-2 shadow-sm bg-gray-50"
-              >
-                <div className="flex justify-between font-bold">
-                  {repo.name} <span>⭐ {repo.stargazers_count}</span>
-                </div>
-                <p className="text-sm text-gray-600">{repo.description}</p>
-              </div>
-            ))}
-          </Expand>
-        ))}
+      {/* Handle jika user tidak ditemukan */}
+      {!loading && queryUser && users.length === 0 && (
+        <EmptyState message="No users found." />
+      )}
+
+      <div className="pt-3">
+        {users.map((user) => {
+          const repos = reposByUsername[user.login] || [];
+
+          return (
+            <Expand key={user.login} title={user.login}>
+              {repos.length === 0 ? (
+                <EmptyState message="This user has no public repositories." />
+              ) : (
+                repos.map((repo) => (
+                  <div
+                    key={repo.id}
+                    className="border p-2 rounded mb-2 shadow-sm bg-gray-50"
+                  >
+                    <div className="flex justify-between font-bold">
+                      {repo.name} <span>⭐ {repo.stargazers_count}</span>
+                    </div>
+                    <p className="text-sm text-gray-600">{repo.description}</p>
+                  </div>
+                ))
+              )}
+            </Expand>
+          );
+        })}
       </div>
     </div>
   );
