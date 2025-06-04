@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/rizapranata/github-repositories-exploler/static/css/main.c2d3bb5a.css",
+    "main.js": "/rizapranata/github-repositories-exploler/static/js/main.0e379df0.js",
+    "static/js/453.a92ea8a4.chunk.js": "/rizapranata/github-repositories-exploler/static/js/453.a92ea8a4.chunk.js",
+    "index.html": "/rizapranata/github-repositories-exploler/index.html",
+    "main.c2d3bb5a.css.map": "/rizapranata/github-repositories-exploler/static/css/main.c2d3bb5a.css.map",
+    "main.0e379df0.js.map": "/rizapranata/github-repositories-exploler/static/js/main.0e379df0.js.map",
+    "453.a92ea8a4.chunk.js.map": "/rizapranata/github-repositories-exploler/static/js/453.a92ea8a4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c2d3bb5a.css",
+    "static/js/main.0e379df0.js"
+  ]
+}
