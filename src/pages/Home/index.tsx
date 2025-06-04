@@ -58,7 +58,7 @@ const Home = () => {
           name="search"
           value={queryUser}
           onChange={handleOnChangeQuery}
-          placeholder="Search GitHub username"
+          placeholder="Enter username"
           className="border px-2 py-1 rounded"
         />
         <button

@@ -8,18 +8,19 @@ const githubApi = axios.create({
   },
 });
 
-githubApi.interceptors.request.use(
-  async (config) => {
-    // const token = localStorage.getItem("token"); // React Web
-    const token = `${configEnv.access_token}`;
+//use github token if want no rate limit
+// githubApi.interceptors.request.use(
+//   async (config) => {
+//     // const token = localStorage.getItem("token"); // React Web
+//     const token = `${configEnv.access_token}`;
     
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+//     if (token) {
+//       config.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return config;
+//   },
+//   (error) => Promise.reject(error)
+// );
 
 githubApi.interceptors.response.use(
   (response) => response,
