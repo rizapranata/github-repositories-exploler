@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { fetchReposByUser, fetchSearchUser } from "../../services/fetchApi";
 import Expand from "../../components/Expand";
 import CircularProgress from "../../components/CircullarProgress";
