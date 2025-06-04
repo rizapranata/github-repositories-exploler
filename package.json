@@ -2,6 +2,7 @@
   "name": "github-repositories-exploler",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/rizapranata/github-repositories-exploler",
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "@testing-library/dom": "^10.4.0",
@@ -12,6 +13,7 @@
     "@types/react-dom": "^19.1.5",
     "axios": "^1.9.0",
     "dotenv": "^16.5.0",
+    "gh-pages": "^6.3.0",
     "react": "^19.1.0",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.1.0",
@@ -27,7 +29,9 @@
     "eject": "react-scripts eject",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
